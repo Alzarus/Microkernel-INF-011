@@ -16,10 +16,23 @@ import javax.swing.JMenuItem;
  * @author aluno
  */
 public class UIController implements IUIController {
+    
+    private static UIController INSTANCE = null;
+    
+    private UIController(){
+    
+    }
+    
+    public static UIController getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new UIController();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean initialize() {
-        mainWindow = new MainWindow();
+        mainWindow = MainWindow.getInstance();
         mainWindow.setVisible(true);
 
         return true;

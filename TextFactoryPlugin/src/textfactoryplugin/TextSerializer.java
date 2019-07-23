@@ -12,6 +12,19 @@ import interfaces.IDocumentSerializer;
  * @author pedro
  */
 public class TextSerializer implements IDocumentSerializer{
+    
+    private static TextSerializer INSTANCE  = null;
+    
+    private TextSerializer(){
+        
+    }
+    
+    public static TextSerializer getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new TextSerializer();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean load() {

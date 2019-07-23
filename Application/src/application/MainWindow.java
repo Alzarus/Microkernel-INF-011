@@ -10,11 +10,20 @@ package application;
  * @author pedro
  */
 public class MainWindow extends javax.swing.JFrame {
+    
+    private static MainWindow INSTANCE  = null;
+    
+    public static MainWindow getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new MainWindow();
+        }
+        return INSTANCE;
+    }
 
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    private MainWindow() {
         initComponents();
     }
 

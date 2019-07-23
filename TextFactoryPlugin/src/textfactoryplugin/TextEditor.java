@@ -13,6 +13,19 @@ import interfaces.IDocumentEditor;
  * @author pedro
  */
 public class TextEditor implements IDocumentEditor{
+    
+    private static TextEditor INSTANCE  = null;
+    
+    private TextEditor(){
+        
+    }
+    
+    public static TextEditor getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new TextEditor();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean open() {

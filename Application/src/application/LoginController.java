@@ -25,6 +25,19 @@ import org.xml.sax.SAXException;
  * @author pedro
  */
 public class LoginController implements ILoginController{
+    
+    private static LoginController INSTANCE  = null;
+    
+    private LoginController(){
+        
+    }
+    
+    public static LoginController getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new LoginController();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean initialize() {

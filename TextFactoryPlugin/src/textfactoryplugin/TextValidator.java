@@ -12,6 +12,19 @@ import interfaces.IDocumentValidator;
  * @author pedro
  */
 public class TextValidator implements IDocumentValidator{
+    
+    private static TextValidator INSTANCE  = null;
+    
+    private TextValidator(){
+        
+    }
+    
+    public static TextValidator getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new TextValidator();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean validate() {

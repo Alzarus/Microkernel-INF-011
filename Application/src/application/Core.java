@@ -19,9 +19,9 @@ public class Core implements ICore {
     private static Core INSTANCE = null;
 
     private Core() {
-        uiController = new UIController();
-        pluginController = new PluginController();
-        loginController = new LoginController();
+        uiController = UIController.getInstance();
+        pluginController = PluginController.getInstance();
+        loginController = LoginController.getInstance();
     }
     
     public boolean initialize(){

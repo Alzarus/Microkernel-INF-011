@@ -50,7 +50,7 @@ public class TextFactoryPlugin implements IPlugin, IDocumentFactory{
         return "txt|doc";
     }
     
-    private TextEditor textEditor = new TextEditor();
-    private TextValidator textValidator = new TextValidator();
-    private TextSerializer textSerializer = new TextSerializer();
+    private TextEditor textEditor = TextEditor.getInstance();
+    private TextValidator textValidator = TextValidator.getInstance();
+    private TextSerializer textSerializer = TextSerializer.getInstance();
 }

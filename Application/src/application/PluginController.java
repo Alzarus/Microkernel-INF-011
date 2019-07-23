@@ -22,6 +22,19 @@ import java.util.logging.Logger;
  * @author pedro
  */
 public class PluginController implements IPluginController {
+    
+    private static PluginController INSTANCE = null;
+    
+    private PluginController(){
+        
+    }
+    
+    public static PluginController getInstance(){
+       if(INSTANCE == null){ 
+           INSTANCE = new PluginController();
+       }
+       return INSTANCE;
+    }
 
     @Override
     public boolean initialize() {
