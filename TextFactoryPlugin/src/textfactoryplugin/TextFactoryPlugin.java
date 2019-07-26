@@ -7,14 +7,12 @@
 package textfactoryplugin;
 
 import application.Core;
-import interfaces.ICore;
 import interfaces.IDocumentEditor;
 import interfaces.IDocumentFactory;
 import interfaces.IDocumentSerializer;
 import interfaces.IDocumentValidator;
 import interfaces.IPlugin;
 import interfaces.IUIController;
-import java.io.File;
 
 //import javax.swing.filechooser.FileNameExtensionFilter;
 /**

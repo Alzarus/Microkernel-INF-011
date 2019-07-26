@@ -5,11 +5,12 @@
  */
 package application;
 
-import interfaces.ICore;
 import interfaces.ILoginController;
 import interfaces.ILoginPlugin;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -52,6 +53,7 @@ public class LoginController implements ILoginController{
         ILoginPlugin login = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder;
+        Method metodo;
         try {
             docBuilder = dbf.newDocumentBuilder();
             Document doc = docBuilder.parse(file);
@@ -59,7 +61,16 @@ public class LoginController implements ILoginController{
             Element headTag = (Element) htmlTag.getElementsByTagName("head").item(0);
             Element titleTag = (Element) headTag.getElementsByTagName("title").item(0);
             String className = titleTag.getTextContent();
-            login = (ILoginPlugin) Class.forName("loginplugin." + className + "LoginPlugin").newInstance();
+//            Method metodo = Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).getMethod("getInstance");
+//            plugin = (IPlugin) metodo.invoke(pluginName.toLowerCase() + "." + pluginName);  
+            try {
+                metodo = Class.forName("loginplugin." + className + "LoginPlugin").getMethod("getInstance");
+                login = (ILoginPlugin) metodo.invoke("loginplugin." + className + "LoginPlugin");
+            } catch (NoSuchMethodException ex) {
+                login = (ILoginPlugin) Class.forName("loginplugin." + className + "LoginPlugin").newInstance();
+            } catch (SecurityException | IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }    
             return login;
         } catch (ParserConfigurationException | SAXException | IOException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,10 +5,11 @@
  */
 package application;
 
-import interfaces.ICore;
 import interfaces.IPlugin;
 import interfaces.IPluginController;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -52,17 +53,25 @@ public class PluginController implements IPluginController {
         URLClassLoader ulc = new URLClassLoader(jars);
         for (i = 0; i < plugins.length; i++) {
             String pluginName = plugins[i].split("\\.")[0];
-            IPlugin plugin = null;
-            try {            
-                plugin = (IPlugin) Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).newInstance();
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            IPlugin plugin = null; 
+            
+            try {
+                Method metodo = Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).getMethod("getInstance");
+                plugin = (IPlugin) metodo.invoke(pluginName.toLowerCase() + "." + pluginName);
+            } catch (NoSuchMethodException ex){
+                try {
+                    plugin = (IPlugin) Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).newInstance();
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex1) {
+                    Logger.getLogger(PluginController.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            } catch (SecurityException | IllegalArgumentException | InvocationTargetException | IllegalAccessException | ClassNotFoundException ex) {
                 Logger.getLogger(PluginController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             if (plugin != null)
                 if (plugin.initialize())
                     loadedPlugins.add(plugin);
         }
-
         return true;
     }
 

@@ -12,6 +12,19 @@ import interfaces.ILoginPlugin;
  * @author pedro
  */
 public class FacebookLoginPlugin implements ILoginPlugin{
+    
+    private static FacebookLoginPlugin INSTANCE = null;
+    
+    private FacebookLoginPlugin(){
+        
+    }
+    
+    public static FacebookLoginPlugin getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new FacebookLoginPlugin();
+        }
+        return INSTANCE;
+    }
 
     @Override
     public boolean efetuarLogin() {
