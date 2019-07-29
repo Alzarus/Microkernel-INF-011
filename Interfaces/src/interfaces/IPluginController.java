@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author aluno
+ * @author pedro
  */
 public interface IPluginController {
     public boolean initialize();

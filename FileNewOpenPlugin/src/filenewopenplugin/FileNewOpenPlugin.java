@@ -36,7 +36,7 @@ public class FileNewOpenPlugin implements IPlugin {
                     acessedFile = chooser.getSelectedFile();
                     fileExtension = acessedFile.getName().split("\\.")[1];
                     loadedPluginsByType = Core.getInstance().getPluginController().getLoadedPluginsByType(IDocumentFactory.class);
-                    findCorrectPlugin();
+                    findCorrectPlugin(acessedFile.getAbsolutePath());
                 } else {
                     JOptionPane.showMessageDialog(new JFrame(), "Problems with the file openning or the user cancelled the operation.", "Error", JOptionPane.ERROR_MESSAGE);
                 }  
@@ -53,16 +53,16 @@ public class FileNewOpenPlugin implements IPlugin {
         return true;
     }
     
-    public boolean findCorrectPlugin(){
+    public boolean findCorrectPlugin(String filePath){
         for(IDocumentFactory p : loadedPluginsByType){
             arr = p.getSupportedExtensions().split("\\|");
             for(String s : arr){
                 if(fileExtension.equals(s)){
                     JOptionPane.showMessageDialog(new JFrame(), "A plugin factory with the chosen file extension has been found.", "Alert", JOptionPane.INFORMATION_MESSAGE);
-                    p.getDocumentEditor().open();
-                    p.getDocumentValidator().validate();
-                    p.getDocumentSerializer().load();
-                    p.getDocumentSerializer().save();
+                    p.getDocumentEditor().open(filePath);
+                    p.getDocumentValidator().validate(filePath);
+                    p.getDocumentSerializer().load(filePath);
+                    p.getDocumentSerializer().save(filePath);
                     return true;
                 }
             }

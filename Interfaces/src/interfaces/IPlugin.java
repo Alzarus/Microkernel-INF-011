@@ -7,7 +7,7 @@ package interfaces;
 
 /**
  *
- * @author aluno
+ * @author pedro
  */
 public interface IPlugin {
     public boolean initialize();

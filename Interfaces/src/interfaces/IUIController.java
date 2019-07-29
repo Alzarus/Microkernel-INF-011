@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 /**
  *
- * @author aluno
+ * @author pedro
  */
 public interface IUIController {
     public boolean initialize();

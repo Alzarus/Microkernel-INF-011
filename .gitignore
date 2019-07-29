@@ -1,0 +1,13 @@
+/Application/build/
+/Interfaces/build/
+/LoginPlugin/build/
+/Application/dist/
+/FileNewOpenPlugin/build/
+/FileNewOpenPlugin/dist/
+/Interfaces/dist/
+/LoginPlugin/dist/
+/TextFactoryPlugin/build/
+/TextFactoryPlugin/dist/
+/PDFAdapterPlugin/nbproject/private/
+/PDFAdapterPlugin/dist/
+/PDFAdapterPlugin/build/

@@ -10,5 +10,5 @@ package interfaces;
  * @author pedro
  */
 public interface IDocumentValidator {
-    public boolean validate();
+    public boolean validate(String filePath);
 }

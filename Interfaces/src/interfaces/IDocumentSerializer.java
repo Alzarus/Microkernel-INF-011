@@ -12,6 +12,6 @@ import java.io.File;
  * @author pedro
  */
 public interface IDocumentSerializer {
-    public boolean load();
-    public boolean save();
+    public boolean load(String filePath);
+    public boolean save(String filePath);
 }

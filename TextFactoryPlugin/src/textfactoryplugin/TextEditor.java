@@ -28,7 +28,7 @@ public class TextEditor implements IDocumentEditor{
     }
 
     @Override
-    public boolean open() {
+    public boolean open(String filePath) {
         System.out.println("You used the method open() from TextEditor. ");
         return true;
     }

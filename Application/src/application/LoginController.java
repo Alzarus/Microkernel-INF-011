@@ -64,9 +64,11 @@ public class LoginController implements ILoginController{
 //            Method metodo = Class.forName(pluginName.toLowerCase() + "." + pluginName, true, ulc).getMethod("getInstance");
 //            plugin = (IPlugin) metodo.invoke(pluginName.toLowerCase() + "." + pluginName);  
             try {
+                System.out.println("Singleton utilizado no LoginController, instancia retornada.");
                 metodo = Class.forName("loginplugin." + className + "LoginPlugin").getMethod("getInstance");
                 login = (ILoginPlugin) metodo.invoke("loginplugin." + className + "LoginPlugin");
             } catch (NoSuchMethodException ex) {
+                System.out.println("LoginController criado a partir de nova instancia.");
                 login = (ILoginPlugin) Class.forName("loginplugin." + className + "LoginPlugin").newInstance();
             } catch (SecurityException | IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

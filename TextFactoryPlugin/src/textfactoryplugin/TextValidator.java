@@ -27,7 +27,7 @@ public class TextValidator implements IDocumentValidator{
     }
 
     @Override
-    public boolean validate() {
+    public boolean validate(String filePath) {
         System.out.println("You used the method validate() from TextValidator. ");
         return true;        
     }

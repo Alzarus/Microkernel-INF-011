@@ -27,13 +27,13 @@ public class TextSerializer implements IDocumentSerializer{
     }
 
     @Override
-    public boolean load() {
+    public boolean load(String filePath) {
         System.out.println("You used the method load() from TextSerializer. ");
         return true;
     }
 
     @Override
-    public boolean save() {
+    public boolean save(String filePath) {
         System.out.println("You used the method save() from TextSerializer. ");
         return true;
     }

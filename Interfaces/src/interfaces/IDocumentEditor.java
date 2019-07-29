@@ -5,12 +5,10 @@
  */
 package interfaces;
 
-import java.io.File;
-
 /**
  *
  * @author pedro
  */
 public interface IDocumentEditor {
-    public boolean open();
+    public boolean open(String filePath);
 }
